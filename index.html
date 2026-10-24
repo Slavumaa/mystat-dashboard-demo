@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="az">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MyStat — Mövzu performansı</title>
+  <meta name="description" content="MyStat student dashboard frontend demo">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <button class="round-button menu-button" aria-label="Menyunu aç"><span></span><span></span><span></span></button>
+    <a class="brand" href="#" aria-label="MyStat ana səhifə">MyStat</a>
+    <div class="top-actions">
+      <button class="round-button" aria-label="Təqvim">▣</button>
+      <button class="round-button notification" aria-label="Bildirişlər">♟<b>9+</b></button>
+      <div class="avatar" role="img" aria-label="İstifadəçi avatarı">OJ</div>
+    </div>
+  </header>
+
+  <aside class="rail" aria-label="Əsas naviqasiya">
+    <button title="Təhsil">⌂</button><button title="Tapşırıqlar">▤</button><button class="active" title="Statistika">◉</button>
+    <button title="Təqvim">▦</button><button title="Kitablar">▥</button><button title="Qruplar">♙</button>
+    <button title="Nailiyyətlər">✹</button><button title="Mağaza">▰</button><span></span>
+    <button title="Ödənişlər">▣</button><button title="Xəbərlər" class="has-dot">◖</button><button title="Dəstək">◇</button>
+  </aside>
+
+  <main class="workspace">
+    <aside class="subjects card">
+      <div class="subjects-head"><h2>Fənlər</h2><button id="closeSubjects" aria-label="Bağla">×</button></div>
+      <div id="subjectList" class="subject-list"></div>
+    </aside>
+
+    <section class="center-column">
+      <article class="hero-card">
+        <div class="score-ring"><div><strong id="heroScore">10.1</strong><span>Orta xal</span></div></div>
+        <div><h1 id="heroLevel">Yüksək səviyyə</h1><p>Tapşırıqlar inamla yerinə yetirilir. Yeni mövzular çətinlik çəkmədən öyrənilir.</p></div>
+      </article>
+
+      <div class="task-row">
+        <button class="task-card violet"><span class="task-icon">☑</span><strong>1</strong><i>›</i><small>Tamamlanmalı olan tapşırıqlar</small></button>
+        <button class="task-card orange"><span class="task-icon">◷</span><strong>1<span>/1</span></strong><i>›</i><small>Vaxtı keçmiş tapşırıqlar</small></button>
+      </div>
+
+      <article class="attendance card">
+        <div class="card-title"><h2>Davamiyyət</h2><span class="paper-plane">➤</span></div>
+        <div class="attendance-stats">
+          <div><strong>100 %</strong><span><b class="purple-dot"></b>Ziyarət</span></div>
+          <div><strong>0 %</strong><span><b class="amber-dot"></b>Keçmək</span></div>
+          <div><strong>25 %</strong><span><b class="lime-dot"></b>Gecikmələr</span></div>
+        </div>
+        <div class="calendar-nav"><button id="prevMonth" aria-label="Əvvəlki ay">‹</button><span id="monthLabel">Oktyabr</span><button id="nextMonth" aria-label="Növbəti ay">›</button></div>
+        <div class="calendar" id="calendar"></div>
+      </article>
+    </section>
+
+    <section class="right-column">
+      <article class="average card">
+        <div class="card-title"><h2>Orta xal</h2><select id="period"><option>il</option><option>ay</option></select></div>
+        <div class="average-stats">
+          <div class="lavender"><strong>8.8</strong><span><b></b>Sinif işi</span></div>
+          <div class="blue"><strong>12</strong><span><b></b>Ev tapşırığı</span></div>
+          <div class="yellow"><span><b></b>Nəzarət</span></div>
+          <div class="pink"><span><b></b>Tematik</span></div>
+        </div>
+        <svg class="chart" viewBox="0 0 600 175" role="img" aria-label="Orta qiymətlər qrafiki">
+          <g class="grid"><line x1="42" y1="20" x2="585" y2="20"/><line x1="42" y1="62" x2="585" y2="62"/><line x1="42" y1="104" x2="585" y2="104"/><line x1="42" y1="146" x2="585" y2="146"/></g>
+          <g class="axis-labels"><text x="8" y="25">12</text><text x="12" y="67">8</text><text x="12" y="109">4</text><text x="16" y="151">0</text><text x="186" y="170">Okt</text><text x="482" y="170">Noy</text></g>
+          <polyline points="195,20 490,20" class="home-line"/><polyline points="195,20 490,82" class="class-line"/>
+          <g class="points"><circle cx="195" cy="20" r="4"/><circle cx="490" cy="20" r="4"/><circle cx="490" cy="82" r="4"/></g>
+        </svg>
+      </article>
+
+      <article class="grades card">
+        <div class="card-title"><h2>Qiymətləndirmələr</h2><div class="view-buttons"><button class="selected" data-view="grid">▦</button><button data-view="list">☰</button></div></div>
+        <div class="filters"><label><input type="checkbox" checked data-kind="class"> Sinif işi</label><label><input type="checkbox" checked data-kind="home"> Ev tapşırığı</label></div>
+        <div id="gradeGroups"></div>
+      </article>
+    </section>
+  </main>
+
+  <button id="openSubjects" class="subjects-fab" aria-label="Fənləri aç">Fənlər</button>
+  <script src="app.js"></script>
+</body>
+</html>
